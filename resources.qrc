@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/background_music"/>
+    <qresource prefix="/images">
+        <file>images/WeChat Image_20190319002937.png</file>
+        <file>images/WeChat Image_20190319002956.png</file>
+        <file>images/WeChat Image_20190319003001.png</file>
+        <file>images/WeChat Image_20190319003007.png</file>
+    </qresource>
+</RCC>
