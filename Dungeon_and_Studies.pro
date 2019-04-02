@@ -27,14 +27,22 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-    Game.cpp \
     player.cpp \
-    startingpage.cpp
+    startingpage.cpp \
+    navigation.cpp \
+    game.cpp \
+    battle_scene.cpp \
+    enemy.cpp \
+    battle_dialog.cpp
 
 HEADERS += \
-    Game.h \
     player.h \
-    startingpage.h
+    startingpage.h \
+    navigation.h \
+    game.h \
+    battle_scene.h \
+    enemy.h \
+    battle_dialog.h
 
 FORMS += \
     startingpage.ui

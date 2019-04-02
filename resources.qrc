@@ -1,9 +1,15 @@
 <RCC>
     <qresource prefix="/background_music"/>
     <qresource prefix="/images">
-        <file>images/WeChat Image_20190319002937.png</file>
-        <file>images/WeChat Image_20190319002956.png</file>
-        <file>images/WeChat Image_20190319003001.png</file>
-        <file>images/WeChat Image_20190319003007.png</file>
+        <file>images/bg.png</file>
+        <file>images/cool.png</file>
+        <file>images/enemy_calculus.png</file>
+        <file>images/enemy_cpp.png</file>
+        <file>images/enemy_python.png</file>
+        <file>images/lazy.png</file>
+        <file>images/main_cool.png</file>
+        <file>images/main_lazy.png</file>
+        <file>images/main_smart.png</file>
+        <file>images/smart.png</file>
     </qresource>
 </RCC>

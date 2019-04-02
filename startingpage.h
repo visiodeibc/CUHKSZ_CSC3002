@@ -18,6 +18,8 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_radioButton_clicked(bool checked);
+
 private:
     Ui::StartingPage *ui;
 };

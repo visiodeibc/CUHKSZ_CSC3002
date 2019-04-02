@@ -3,8 +3,16 @@
 #include<QKeyEvent>
 
 
-Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
+Player::Player(QGraphicsItem *parent, string player): QGraphicsPixmapItem(parent){
     setPixmap(QPixmap(":/images/images/WeChat Image_20190319002956.png"));
+    // setting the appropriate image
+    if (player == "smart"){             // when the player is smart
+        setPixmap(QPixmap(":/images/images/smart"));
+    }else if(player == "cool"){         // when the player is cool
+        setPixmap(QPixmap(":/images/images/cool"));
+    }else{                              // when the player is lazy
+        setPixmap(QPixmap(":/images/images/lazy"));
+    }
 }
 
 void Player::keyPressEvent(QKeyEvent *event)

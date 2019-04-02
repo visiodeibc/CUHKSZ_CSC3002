@@ -1,7 +1,8 @@
 #include "startingpage.h"
 #include "ui_startingpage.h"
-#include "Game.h"
+#include "game.h"
 #include<QApplication>
+#include<QPixmap>
 
 Game * game;
 
@@ -19,9 +20,7 @@ StartingPage::~StartingPage()
 
 void StartingPage::on_pushButton_clicked()
 {
-    delete ui;
-    //hide();
+    hide();
     game = new Game();
-    game->show();
-   //   delete ui;
 }
+

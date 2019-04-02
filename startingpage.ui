@@ -13,11 +13,14 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QRadioButton" name="radioButton_2">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>550</y>
+     <x>160</x>
+     <y>560</y>
      <width>95</width>
      <height>20</height>
     </rect>
@@ -32,9 +35,9 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>500</x>
-     <y>550</y>
-     <width>95</width>
+     <x>490</x>
+     <y>560</y>
+     <width>161</width>
      <height>20</height>
     </rect>
    </property>
@@ -45,8 +48,8 @@
   <widget class="QRadioButton" name="radioButton_3">
    <property name="geometry">
     <rect>
-     <x>860</x>
-     <y>550</y>
+     <x>970</x>
+     <y>560</y>
      <width>95</width>
      <height>20</height>
     </rect>
@@ -58,8 +61,8 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>500</x>
-     <y>660</y>
+     <x>570</x>
+     <y>630</y>
      <width>93</width>
      <height>28</height>
     </rect>
@@ -68,6 +71,66 @@
     <string>PushButton</string>
    </property>
   </widget>
+  <widget class="QGraphicsView" name="SmartGuy">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>210</y>
+     <width>271</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image : url(&quot;:/images/images/main_smart&quot;)</string>
+   </property>
+  </widget>
+  <widget class="QGraphicsView" name="CoolGuy">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>210</y>
+     <width>271</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image : url(&quot;:/images/images/main_cool&quot;)</string>
+   </property>
+  </widget>
+  <widget class="QGraphicsView" name="LazyGuy">
+   <property name="geometry">
+    <rect>
+     <x>890</x>
+     <y>210</y>
+     <width>271</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image : url(&quot;:/images/images/main_lazy&quot;)</string>
+   </property>
+  </widget>
+  <widget class="QGraphicsView" name="bg">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1201</width>
+     <height>801</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image : url(&quot;:/images/images/bg.png&quot;)</string>
+   </property>
+  </widget>
+  <zorder>bg</zorder>
+  <zorder>radioButton_2</zorder>
+  <zorder>radioButton</zorder>
+  <zorder>radioButton_3</zorder>
+  <zorder>pushButton</zorder>
+  <zorder>SmartGuy</zorder>
+  <zorder>CoolGuy</zorder>
+  <zorder>LazyGuy</zorder>
  </widget>
  <resources/>
  <connections/>
