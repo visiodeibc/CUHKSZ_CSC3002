@@ -4,15 +4,15 @@
 
 
 Player::Player(QGraphicsItem *parent, string player): QGraphicsPixmapItem(parent){
-    setPixmap(QPixmap(":/images/images/WeChat Image_20190319002956.png"));
     // setting the appropriate image
     if (player == "smart"){             // when the player is smart
-        setPixmap(QPixmap(":/images/images/smart"));
+        setPixmap(QPixmap(":/images/images/main_smart.png"));
     }else if(player == "cool"){         // when the player is cool
-        setPixmap(QPixmap(":/images/images/cool"));
+        setPixmap(QPixmap(":/images/images/cool.png"));
     }else{                              // when the player is lazy
-        setPixmap(QPixmap(":/images/images/lazy"));
+        setPixmap(QPixmap(":/images/images/lazy.png"));
     }
+
 }
 
 void Player::keyPressEvent(QKeyEvent *event)
@@ -22,7 +22,7 @@ void Player::keyPressEvent(QKeyEvent *event)
         setPos(x()-20,y());
     }
     else if (event->key() == Qt::Key_Right){
-        if(pos().x() <1000+ this->pixmap().width())
+        if(pos().x() <1000)
         setPos(x()+20,y());
     }
     else if (event->key() == Qt::Key_Up){
@@ -32,5 +32,18 @@ void Player::keyPressEvent(QKeyEvent *event)
     else if (event->key() == Qt::Key_Down){
         if(pos().y() <700)
         setPos(x(),y()+20);
+
     }
+    else if (event->key()== Qt::Key_A){
+        //scene()->removeItem(this);
+        current_navigation_view->hide();
+        current_battle_view->show();
+
+    }
+}
+
+void Player::setview(QGraphicsView *navigation_view,QGraphicsView * battle_view)
+{
+    current_navigation_view = navigation_view;
+    current_battle_view = battle_view;
 }

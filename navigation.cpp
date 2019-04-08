@@ -1,34 +1,34 @@
 #include "navigation.h"
+#include<QKeyEvent>
 
-Navigation::Navigation(QWidget * parent, Player * player)
+Navigation::Navigation( Player * player)
 {
     //create a scene
-    scene = new QGraphicsScene();
+    scene = new QGraphicsScene;
     scene->setSceneRect(0,0,1200,800);
-    setBackgroundBrush(QBrush(QImage(":/images/images/WeChat Image_20190319002937.png")));
-    setScene(scene);
+    scene->setBackgroundBrush(QBrush(QImage(":/images/images/bg.png")));
+
+
+    //create an item to put into the scene
+    player->setPos(300,300);
+    player->setFlag(QGraphicsItem::ItemIsFocusable);
+    //player->setFocus();
+
+    //set view
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(1200,800);
 
-    //create an item to put into the scene
-    player->setPos(0,scene->height()/2 - (player->pixmap().height()/2));
-
     //add item to the scene
-    scene ->addItem(player);
-
-    // make item focusable
-    player->setFlag(QGraphicsItem::ItemIsFocusable);
-    player->setFocus();
-
-    //add a view
-    show();
+    scene->addItem(player);
+    setScene(scene);
 
 }
 
-//void Navigation:: crash with door{
- //hide;}
+void Navigation::add_enemy_to_scene(Enemy *enemy, int x_pos, int y_pos)
+{
+    enemy->setPos(x_pos,y_pos);
+    //scene->addItem(enemy);
+}
 
-//void Navigation:: end of battle {
-// make new door;
-//show;}
+

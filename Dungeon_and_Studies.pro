@@ -41,8 +41,8 @@ HEADERS += \
     navigation.h \
     game.h \
     battle_scene.h \
-    enemy.h \
-    battle_dialog.h
+    battle_dialog.h \
+    enemy.h
 
 FORMS += \
     startingpage.ui

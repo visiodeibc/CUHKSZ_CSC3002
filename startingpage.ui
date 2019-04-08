@@ -16,48 +16,6 @@
   <property name="styleSheet">
    <string notr="true"/>
   </property>
-  <widget class="QRadioButton" name="radioButton_2">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>560</y>
-     <width>95</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>RadioButton</string>
-   </property>
-  </widget>
-  <widget class="QRadioButton" name="radioButton">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>490</x>
-     <y>560</y>
-     <width>161</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>RadioButton</string>
-   </property>
-  </widget>
-  <widget class="QRadioButton" name="radioButton_3">
-   <property name="geometry">
-    <rect>
-     <x>970</x>
-     <y>560</y>
-     <width>95</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>RadioButton</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
@@ -124,9 +82,6 @@
    </property>
   </widget>
   <zorder>bg</zorder>
-  <zorder>radioButton_2</zorder>
-  <zorder>radioButton</zorder>
-  <zorder>radioButton_3</zorder>
   <zorder>pushButton</zorder>
   <zorder>SmartGuy</zorder>
   <zorder>CoolGuy</zorder>
