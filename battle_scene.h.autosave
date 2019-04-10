@@ -21,6 +21,8 @@ class battle_scene : public QGraphicsView
 public:
 
     battle_scene(Player *player=0,Enemy *enemy=0);
+    
+    void battle_finish();
 
     Player * player;
     Enemy * enemy;

@@ -20,6 +20,9 @@ Enemy::Enemy(QGraphicsItem * parent, string character , int enemy_type): QGraphi
     }else{                    // level 3 enemy
 
     }
+
+    health = 100;
+    setFlag(QGraphicsItem::ItemIsFocusable);
 }
 
 

@@ -4,8 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui \
-         multimedia
+QT       +=  gui \   #원래 core gui  였음
+         multimedia \
+        #gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -33,7 +34,10 @@ SOURCES += \
     game.cpp \
     battle_scene.cpp \
     enemy.cpp \
-    battle_dialog.cpp
+    a_study.cpp \
+    b_group.cpp \
+    c_overnight.cpp \
+    d_run.cpp
 
 HEADERS += \
     player.h \
@@ -41,8 +45,11 @@ HEADERS += \
     navigation.h \
     game.h \
     battle_scene.h \
-    battle_dialog.h \
-    enemy.h
+    enemy.h \
+    a_study.h \
+    b_group.h \
+    c_overnight.h \
+    d_run.h
 
 FORMS += \
     startingpage.ui

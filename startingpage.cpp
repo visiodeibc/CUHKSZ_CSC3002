@@ -23,4 +23,3 @@ void StartingPage::on_pushButton_clicked()
     hide();
     game = new Game();
 }
-

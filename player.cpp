@@ -12,6 +12,8 @@ Player::Player(QGraphicsItem *parent, string player): QGraphicsPixmapItem(parent
     }else{                              // when the player is lazy
         setPixmap(QPixmap(":/images/images/lazy.png"));
     }
+    health = 100;
+    setFlag(QGraphicsItem::ItemIsFocusable);
 
 }
 
@@ -35,15 +37,8 @@ void Player::keyPressEvent(QKeyEvent *event)
 
     }
     else if (event->key()== Qt::Key_A){
-        //scene()->removeItem(this);
-        current_navigation_view->hide();
-        current_battle_view->show();
-
+        emit change_view();
     }
 }
 
-void Player::setview(QGraphicsView *navigation_view,QGraphicsView * battle_view)
-{
-    current_navigation_view = navigation_view;
-    current_battle_view = battle_view;
-}
+

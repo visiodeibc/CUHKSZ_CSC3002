@@ -11,8 +11,7 @@ Navigation::Navigation( Player * player)
 
     //create an item to put into the scene
     player->setPos(300,300);
-    player->setFlag(QGraphicsItem::ItemIsFocusable);
-    //player->setFocus();
+    player->setFocus();
 
     //set view
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
