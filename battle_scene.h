@@ -20,7 +20,10 @@ class battle_scene : public QGraphicsView
 {
 public:
 
-    battle_scene(Player *player=0,Enemy *enemy=0);
+    battle_scene(string player_name);
+
+    void battle_finish();
+    void add_new_enemy(string enemy_name);
 
     Player * player;
     Enemy * enemy;
@@ -34,6 +37,12 @@ public:
     QGraphicsTextItem * player_health;
     QGraphicsTextItem * enemy_health;
 
+    int battle_stage=1;
+
+signals:
+    void battle_won(int battle_stage);
+    void battle_lost();
+    void battle_ran();
 
 public slots:
     void up(int a);

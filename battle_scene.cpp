@@ -2,9 +2,14 @@
 
 #include<QGraphicsScene>
 #include<QGraphicsSceneMouseEvent>
+#include "enemy.h"
+#include "player.h"
 
-battle_scene::battle_scene(Player *player, Enemy *enemy)
+battle_scene::battle_scene(string player_name)
 {
+
+    enemy = new Enemy(0,"enemy_calculus");
+    player = new Player(0,player_name);
 
     //create a scene
     scene =  new QGraphicsScene;
@@ -125,12 +130,86 @@ void battle_scene::down(int a)
 
 void battle_scene::yes(int a)
 {
-    if(a == 1){
-    }else if(a == 2){
+    if(a == 1){                     //  study attack
 
-    }else if(a == 3){
+    }else if(a == 2){               //  group study attack
 
-    }else if(a == 4){
+    }else if(a == 3){               //  overnight study attack
+
+    }else if(a == 4){               //  run , have to add arithmathic function and battle finish function at the end
 
     }
+
+    if (player->health <= 0 or
+            enemy->health <= 0){
+        battle_finish();
+    }
 }
+
+void battle_scene::battle_finish()
+{
+    if(player->health <= 0){        // when player won
+
+        player->health = 100;       //health recovery
+        scene->removeItem(enemy_health);    //remove existing enemy
+        scene->removeItem(enemy);
+        delete enemy_health;
+        delete enemy;
+
+        if (battle_stage == 1){
+            battle_stage ++;
+            add_new_enemy("enemy_python");  //append next enemy
+        }else if(battle_stage == 2){
+            battle_stage ++;
+            add_new_enemy("enemy_cpp");
+        }//final round 뭐 만들어야 할듯
+
+        emit battle_won(battle_stage);
+    }else if(enemy->health <= 0){   // when player lost
+        emit battle_lost();
+    }else{                          // when player successfully ran
+        emit battle_ran();
+    }
+
+}
+
+void battle_scene::add_new_enemy(string enemy_name)     //delete previous enemy and add next enemy
+{
+    enemy = new Enemy(0,enemy_name);
+    enemy_health = new QGraphicsTextItem();
+    enemy_health->setPlainText(QString("Enemy Health: ") + QString::number(enemy->health));
+    enemy_health->setFont(QFont("times",25));
+    enemy_health->setDefaultTextColor(Qt::red);
+    enemy->setPos(800,300);
+    enemy_health->setPos(750,20);
+    scene->addItem(enemy);
+    scene->addItem(enemy_health);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

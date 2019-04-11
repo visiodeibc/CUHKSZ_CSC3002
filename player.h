@@ -18,6 +18,7 @@ public:
     Player(QGraphicsItem * parent=0, string character = 0);
 
     void keyPressEvent(QKeyEvent *event);
+    void reset_health(int a);
 
     //attributes
     int health;

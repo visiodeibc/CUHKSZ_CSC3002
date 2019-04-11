@@ -41,4 +41,9 @@ void Player::keyPressEvent(QKeyEvent *event)
     }
 }
 
+void Player::reset_health(int a)
+{
+    health = a;
+}
+
 

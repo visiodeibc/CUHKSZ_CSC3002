@@ -4,10 +4,10 @@
 #include "navigation.h"
 #include "player.h"
 #include "battle_scene.h"
-#include "enemy.h"
 
 #include<QObject>
 #include<QWidget>
+
 
 class Game: public QObject
 {
@@ -18,13 +18,15 @@ public:
 
     Navigation * navigation_window;
     Player * player_navigation;
-    Player * player_battle;
+    string player_name;
     battle_scene * battle;
-    Enemy * enemy_1;
-    int stage_number;
 
 public slots:
-    void activate();
+    void activate(); //activate the navigation -> battle scene
+
+    void battle_won(int battle_stage);
+    void battle_lost();
+    void battle_ran();
 };
 
 #endif // GAME_H
