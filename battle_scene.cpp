@@ -1,20 +1,30 @@
 #include "battle_scene.h"
 
-#include<QGraphicsScene>
-#include<QGraphicsSceneMouseEvent>
+#include <QGraphicsScene>
+#include <QGraphicsSceneMouseEvent>
 #include "enemy.h"
 #include "player.h"
+
+#include <QPushButton>
+#include <QHBoxLayout>
+#include <QApplication>
+#include <QLabel>
+#include <QObject>
+
+//recently added
+#include <QPushButton>
+#include <QHBoxLayout>
 
 battle_scene::battle_scene(string player_name)
 {
 
-    enemy = new Enemy(0,"enemy_calculus");
-    player = new Player(0,player_name);
+    enemy = new Enemy(nullptr,"enemy_calculus");
+    player = new Player(nullptr,player_name);
 
     //create a scene
     scene =  new QGraphicsScene;
     scene->setSceneRect(0,0,1200,800);
-    scene->setBackgroundBrush(QBrush(QImage(":/images/images/bg.png")));
+    scene->setBackgroundBrush(QBrush(QImage(":/images/images/battlebg.png")));
 
     //set up player health
     player_health = new QGraphicsTextItem();
@@ -64,7 +74,6 @@ battle_scene::battle_scene(string player_name)
     setFixedSize(1200,800);
     setScene(scene);
 
-
     //when down is pressed
     connect(study_1,&a_study::down,this,&battle_scene::down);
     connect(group_2,&b_group::down,this,&battle_scene::down);
@@ -83,10 +92,9 @@ battle_scene::battle_scene(string player_name)
     connect(overnight_3,&c_overnight::yes,this,&battle_scene::yes);
     connect(run_4,&d_run::yes,this,&battle_scene::yes);
 
-
 }
 
-void battle_scene::up(int a)
+void battle_scene::up(int a) // Selecting the attack modes
 {
     if(a == 1){
         study_1->setDefaultTextColor(Qt::black);
@@ -156,26 +164,33 @@ void battle_scene::battle_finish()
         delete enemy_health;
         delete enemy;
 
-        if (battle_stage == 1){
+        if (battle_stage == 1)
+        {
             battle_stage ++;
             add_new_enemy("enemy_python");  //append next enemy
-        }else if(battle_stage == 2){
+        }
+        else if(battle_stage == 2)
+        {
             battle_stage ++;
             add_new_enemy("enemy_cpp");
         }//final round 뭐 만들어야 할듯
 
-        emit battle_won(battle_stage);
-    }else if(enemy->health <= 0){   // when player lost
-        emit battle_lost();
-    }else{                          // when player successfully ran
-        emit battle_ran();
+        emit SIGNAL(battle_won(battle_stage));
+    }
+    else if(enemy->health <= 0)
+    {   // when player lost
+        emit SIGNAL(battle_lost());
+    }
+    else
+    {   // when player successfully ran
+        emit SIGNAL(battle_ran());
     }
 
 }
 
 void battle_scene::add_new_enemy(string enemy_name)     //delete previous enemy and add next enemy
 {
-    enemy = new Enemy(0,enemy_name);
+    enemy = new Enemy(nullptr, enemy_name);
     enemy_health = new QGraphicsTextItem();
     enemy_health->setPlainText(QString("Enemy Health: ") + QString::number(enemy->health));
     enemy_health->setFont(QFont("times",25));

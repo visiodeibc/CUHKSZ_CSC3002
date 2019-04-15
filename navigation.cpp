@@ -10,7 +10,7 @@ Navigation::Navigation( Player * player)
 
 
     //create an item to put into the scene
-    player->setPos(300,300);
+    player->setPos(0, 500);
     player->setFocus();
 
     //set view

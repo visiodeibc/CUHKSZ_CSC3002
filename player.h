@@ -15,7 +15,7 @@ using namespace std;
 class Player:public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
-    Player(QGraphicsItem * parent=0, string character = 0);
+    Player(QGraphicsItem * parent=0, string character = nullptr);
 
     void keyPressEvent(QKeyEvent *event);
     void reset_health(int a);

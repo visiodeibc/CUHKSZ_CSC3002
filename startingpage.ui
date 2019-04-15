@@ -68,7 +68,7 @@
     <string notr="true">background-image : url(&quot;:/images/images/main_lazy&quot;)</string>
    </property>
   </widget>
-  <widget class="QGraphicsView" name="bg">
+  <widget class="QGraphicsView" name="startbg">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -78,10 +78,10 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image : url(&quot;:/images/images/bg.png&quot;)</string>
+    <string notr="true">background-image: url(:/images/images/startbg.png);</string>
    </property>
   </widget>
-  <zorder>bg</zorder>
+  <zorder>startbg</zorder>
   <zorder>pushButton</zorder>
   <zorder>SmartGuy</zorder>
   <zorder>CoolGuy</zorder>

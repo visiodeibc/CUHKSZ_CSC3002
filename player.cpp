@@ -1,6 +1,7 @@
 #include "player.h"
-#include<QGraphicsScene>
-#include<QKeyEvent>
+#include <QGraphicsScene>
+#include <QKeyEvent>
+#include <QtDebug>
 
 
 Player::Player(QGraphicsItem *parent, string player): QGraphicsPixmapItem(parent){
@@ -19,25 +20,48 @@ Player::Player(QGraphicsItem *parent, string player): QGraphicsPixmapItem(parent
 
 void Player::keyPressEvent(QKeyEvent *event)
 {
-    if (event->key() == Qt::Key_Left){
-        if(pos().x() >0)
-        setPos(x()-20,y());
+    if (event->key() == Qt::Key_Left)
+    {
+        if((pos().x() >0) && (pos().y() == 500.0))
+        {
+            setPos(x()-50,y());
+        }
+        qDebug() << "myObject knows you pressed left!";
+        qDebug() << "x:" << pos().x();
+        qDebug() << "y:" << pos().y();
     }
     else if (event->key() == Qt::Key_Right){
-        if(pos().x() <1000)
-        setPos(x()+20,y());
-    }
-    else if (event->key() == Qt::Key_Up){
-        if((pos().y() >0))
-        setPos(x(),y()-20);
-    }
-    else if (event->key() == Qt::Key_Down){
-        if(pos().y() <700)
-        setPos(x(),y()+20);
+        if((pos().x() < 1000) && (pos().y() == 500.0))
+        setPos(x()+50,y());
 
+        qDebug() << "myObject knows you pressed right!";
+        qDebug() << "x:" << pos().x();
+        qDebug() << "y:" << pos().y();
     }
-    else if (event->key()== Qt::Key_A){
-        emit change_view();
+
+    if (pos().x() == 150.0 || pos().x() == 450.0 || pos().x() == 950.0)
+    {
+        if (event->key() == Qt::Key_Up)
+        {
+            if((pos().y() >250))
+            setPos(x(),y()-50);
+
+            qDebug() << "myObject knows you pressed up!";
+            qDebug() << "x:" << pos().x();
+            qDebug() << "y:" << pos().y();
+        }
+        else if (event->key() == Qt::Key_Down)
+        {
+            if(pos().y() <500)
+            setPos(x(),y()+50);
+
+            qDebug() << "myObject knows you pressed down!";
+            qDebug() << "x:" << pos().x();
+            qDebug() << "y:" << pos().y();
+        }
+        else if (event->key()== Qt::Key_A){
+            emit change_view();
+        }
     }
 }
 

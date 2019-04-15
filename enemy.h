@@ -11,7 +11,7 @@ using namespace std;
 class Enemy: public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
-    Enemy(QGraphicsItem * parent=0, string character=0 , int enemy_type = 0);
+    Enemy(QGraphicsItem * parent=0, string character = nullptr , int enemy_type = 0);
 
     //attributes
     int health;

@@ -3,6 +3,7 @@
 
 
 #include <QWidget>
+#include <QtWidgets/qtwidgetsglobal.h>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include "player.h"
@@ -12,7 +13,7 @@
 class Navigation : public QGraphicsView
 {
 public:
-    Navigation(Player * player = 0);
+    Navigation(Player * player = nullptr);
 
     void add_enemy_to_scene(Enemy *enemy, int x_pos, int y_pos);
 

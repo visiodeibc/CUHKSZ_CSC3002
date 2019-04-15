@@ -16,19 +16,16 @@
 
 
 class battle_scene : public QGraphicsView
-
 {
+    Q_OBJECT
 public:
 
     battle_scene(string player_name);
-
-    void battle_finish();
     void add_new_enemy(string enemy_name);
 
     Player * player;
     Enemy * enemy;
     QGraphicsScene * scene;
-
     a_study  * study_1;
     b_group * group_2;
     c_overnight * overnight_3;
@@ -45,6 +42,8 @@ signals:
     void battle_ran();
 
 public slots:
+
+    void battle_finish();
     void up(int a);
     void down(int a);
     void yes(int a);

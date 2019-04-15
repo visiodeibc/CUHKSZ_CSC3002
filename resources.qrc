@@ -11,5 +11,7 @@
         <file>images/main_lazy.png</file>
         <file>images/main_smart.png</file>
         <file>images/smart.png</file>
+        <file>images/startbg.png</file>
+        <file>images/battlebg.png</file>
     </qresource>
 </RCC>

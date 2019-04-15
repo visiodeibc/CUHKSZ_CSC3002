@@ -8,6 +8,19 @@
 #include<QObject>
 #include<QWidget>
 
+// new edits
+#include <QWidget>
+
+#include <QPushButton>
+
+#include <QObject>
+
+#include <QString>
+
+#include <QGraphicsView>
+
+#include <QGraphicsScene>
+
 
 class Game: public QObject
 {
@@ -23,7 +36,7 @@ public:
 
 public slots:
     void activate(); //activate the navigation -> battle scene
-
+    void restart_game(); // restarts -> open the starting page
     void battle_won(int battle_stage);
     void battle_lost();
     void battle_ran();
