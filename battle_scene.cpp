@@ -10,8 +10,6 @@
 #include <QApplication>
 #include <QLabel>
 #include <QObject>
-
-//recently added
 #include <QPushButton>
 #include <QHBoxLayout>
 
@@ -74,11 +72,6 @@ battle_scene::battle_scene(string player_name)
     setFixedSize(1200,800);
     setScene(scene);
 
-    //when down is pressed
-    connect(study_1,&a_study::down,this,&battle_scene::down);
-    connect(group_2,&b_group::down,this,&battle_scene::down);
-    connect(overnight_3,&c_overnight::down,this,&battle_scene::down);
-    connect(run_4,&d_run::down,this,&battle_scene::down);
 
     //when up is pressed
     connect(study_1,&a_study::up,this,&battle_scene::up);
@@ -86,12 +79,17 @@ battle_scene::battle_scene(string player_name)
     connect(overnight_3,&c_overnight::up,this,&battle_scene::up);
     connect(run_4,&d_run::up,this,&battle_scene::up);
 
+    //when down is pressed
+    connect(study_1,&a_study::down,this,&battle_scene::down);
+    connect(group_2,&b_group::down,this,&battle_scene::down);
+    connect(overnight_3,&c_overnight::down,this,&battle_scene::down);
+    connect(run_4,&d_run::down,this,&battle_scene::down);
+
     //when 'y'(yes) is pressed
     connect(study_1,&a_study::yes,this,&battle_scene::yes);
     connect(group_2,&b_group::yes,this,&battle_scene::yes);
     connect(overnight_3,&c_overnight::yes,this,&battle_scene::yes);
     connect(run_4,&d_run::yes,this,&battle_scene::yes);
-
 }
 
 void battle_scene::up(int a) // Selecting the attack modes
@@ -156,7 +154,7 @@ void battle_scene::yes(int a)
 
 void battle_scene::battle_finish()
 {
-    if(player->health <= 0){        // when player won
+    if(enemy->health <= 0){        // when player won
 
         player->health = 100;       //health recovery
         scene->removeItem(enemy_health);    //remove existing enemy
@@ -173,17 +171,17 @@ void battle_scene::battle_finish()
         {
             battle_stage ++;
             add_new_enemy("enemy_cpp");
-        }//final round 뭐 만들어야 할듯
+        }//final round we gotta make something
 
-        emit SIGNAL(battle_won(battle_stage));
+        emit battle_won(battle_stage);
     }
-    else if(enemy->health <= 0)
+    else if(player->health <= 0)
     {   // when player lost
-        emit SIGNAL(battle_lost());
+        emit battle_lost();
     }
     else
     {   // when player successfully ran
-        emit SIGNAL(battle_ran());
+        emit battle_ran();
     }
 
 }
