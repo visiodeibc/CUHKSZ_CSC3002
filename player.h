@@ -12,10 +12,11 @@ class battle_scene;
 class Navigation;
 using namespace std;
 
-class Player:public QObject, public QGraphicsPixmapItem{
+class Player:public QObject, public QGraphicsPixmapItem
+{
     Q_OBJECT
 public:
-    Player(QGraphicsItem * parent=0, string character = nullptr);
+    Player(QGraphicsItem * parent = nullptr, string character = nullptr);
 
     void keyPressEvent(QKeyEvent *event);
     void reset_health(int a);

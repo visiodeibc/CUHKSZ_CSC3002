@@ -34,7 +34,7 @@ public:
     QGraphicsTextItem * player_health;
     QGraphicsTextItem * enemy_health;
 
-    int battle_stage=1;
+    int battle_stage;
 
 signals:
     void battle_won(int battle_stage);

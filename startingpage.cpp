@@ -1,8 +1,9 @@
 #include "startingpage.h"
 #include "ui_startingpage.h"
 #include "game.h"
-#include<QApplication>
-#include<QPixmap>
+
+#include <QApplication>
+#include <QPixmap>
 
 Game * game;
 
@@ -18,8 +19,26 @@ StartingPage::~StartingPage()
     delete ui;
 }
 
+string player = "cool";
+
+void StartingPage::on_radioButton1_clicked()
+{
+    player = "smart";
+}
+
+void StartingPage::on_radioButton2_clicked()
+{
+    player = "cool";
+}
+
+void StartingPage::on_radioButton3_clicked()
+{
+    player = "lazy";
+}
+
 void StartingPage::on_pushButton_clicked()
 {
-    hide();
-    game = new Game();
+    this->hide();
+    game = new Game(nullptr, player);
 }
+

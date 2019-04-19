@@ -5,20 +5,11 @@
 #include "player.h"
 #include "battle_scene.h"
 
-#include<QObject>
-#include<QWidget>
-
-// new edits
 #include <QWidget>
-
 #include <QPushButton>
-
 #include <QObject>
-
 #include <QString>
-
 #include <QGraphicsView>
-
 #include <QGraphicsScene>
 
 
@@ -27,7 +18,7 @@ class Game: public QObject
     Q_OBJECT
 
 public:
-    explicit Game(QObject *parent = nullptr);
+    Game(QObject *parent = nullptr, string player = nullptr);
 
     Navigation * navigation_window;
     Player * player_navigation;
@@ -35,8 +26,10 @@ public:
     battle_scene * battle;
 
 public slots:
-    void activate(); //activate the navigation -> battle scene
+    void set_player(string player);
+    void activate_battle(); //activate the navigation -> battle scene
     void restart_game(); // restarts -> open the starting page
+//    void battle_won(int battle_stage);
     void battle_won(int battle_stage);
     void battle_lost();
     void battle_ran();

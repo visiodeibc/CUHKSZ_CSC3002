@@ -1,8 +1,4 @@
-#include "game.h"
-#include "player.h"
-#include "battle_scene.h"
 #include <QObject>
-
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QRadioButton>
@@ -12,32 +8,41 @@
 #include <QGraphicsScene>
 #include <QApplication>
 #include <QDesktopWidget>
+
+#include "game.h"
+#include "player.h"
+#include "battle_scene.h"
 #include "startingpage.h"
 
-Game::Game(QObject *parent) : QObject(parent)
+Game::Game(QObject *parent, string player) : QObject(parent)
 {
-    player_navigation = new Player(nullptr, "smart");
+    set_player(player);
+    player_navigation = new Player(nullptr, player_name);
     navigation_window = new Navigation(player_navigation);
-    player_name = "smart";
     navigation_window->show();
     battle = new battle_scene(player_name);
 
     //navigation to battle scene
-    connect(player_navigation, SIGNAL(change_view()), this, SLOT(activate()));
+    connect(player_navigation, SIGNAL(change_view()), this, SLOT(activate_battle()));
 
     //battle scene to navigtion/ending/run
-//   connect(battle, SIGNAL(battle_scene::battle_won()), this, SLOT(battle_won()));
-//   connect(battle, SIGNAL(battle_scene::battle_lost()), this, SLOT(battle_lost()));
     connect(battle,SIGNAL(battle_ran()),this,SLOT(battle_ran()));
+    connect(battle,SIGNAL(battle_won(int)),this,SLOT(battle_won(int)));
+    connect(battle,SIGNAL(battle_lost()),this,SLOT(battle_lost()));
 
 }
 
-void Game::activate()
+// Changes the player to the selected
+void Game::set_player(string player)
+{
+    this->player_name = player;
+}
+
+void Game::activate_battle()
 {
     navigation_window->hide();
     battle->show();
     battle->study_1->setFocus();
-
 }
 
 void Game::restart_game()
@@ -50,11 +55,17 @@ void Game::restart_game()
 
 void Game::battle_won(int battle_stage)
 {
-    if(battle_stage == 2){
 
-    }else if(battle_stage == 3){
+    if(battle_stage == 2)
+    {
 
     }
+    else if(battle_stage == 3)
+    {
+    }
+
+    battle->hide();
+    navigation_window->show();
 }
 
 void Game::battle_lost()
@@ -89,7 +100,6 @@ void Game::battle_lost()
 
 void Game::battle_ran()
 {
-
     battle->hide();
     navigation_window->show();
 }

@@ -6,12 +6,17 @@
 
 Player::Player(QGraphicsItem *parent, string player): QGraphicsPixmapItem(parent){
     // setting the appropriate image
-    if (player == "smart"){             // when the player is smart
+    if (player == "smart")
+    {
         setPixmap(QPixmap(":/images/images/main_smart.png"));
-    }else if(player == "cool"){         // when the player is cool
-        setPixmap(QPixmap(":/images/images/cool.png"));
-    }else{                              // when the player is lazy
-        setPixmap(QPixmap(":/images/images/lazy.png"));
+    }
+    else if(player == "cool")
+    {
+        setPixmap(QPixmap(":/images/images/main_cool.png"));
+    }
+    else if(player == "lazy")
+    {
+        setPixmap(QPixmap(":/images/images/main_lazy.png"));
     }
     health = 100;
     setFlag(QGraphicsItem::ItemIsFocusable);
@@ -59,8 +64,12 @@ void Player::keyPressEvent(QKeyEvent *event)
             qDebug() << "x:" << pos().x();
             qDebug() << "y:" << pos().y();
         }
-        else if (event->key()== Qt::Key_A){
-            emit change_view();
+
+        if(pos().y() == 250.0)
+        {
+            if (event->key()== Qt::Key_A){
+                emit change_view();
+            }
         }
     }
 }

@@ -16,9 +16,14 @@ public:
     ~StartingPage();
 
 private slots:
+
     void on_pushButton_clicked();
 
-//    void on_radioButton_clicked(bool checked);
+    void on_radioButton1_clicked();
+
+    void on_radioButton2_clicked();
+
+    void on_radioButton3_clicked();
 
 private:
     Ui::StartingPage *ui;

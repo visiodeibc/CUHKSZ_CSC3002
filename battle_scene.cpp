@@ -10,6 +10,8 @@
 #include <QApplication>
 #include <QLabel>
 #include <QObject>
+
+//recently added
 #include <QPushButton>
 #include <QHBoxLayout>
 
@@ -18,6 +20,8 @@ battle_scene::battle_scene(string player_name)
 
     enemy = new Enemy(nullptr,"enemy_calculus");
     player = new Player(nullptr,player_name);
+
+    battle_stage = 1;
 
     //create a scene
     scene =  new QGraphicsScene;
@@ -66,18 +70,10 @@ battle_scene::battle_scene(string player_name)
     scene->addItem(player_health);
     scene->addItem(enemy_health);
 
-
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(1200,800);
     setScene(scene);
-
-
-    //when up is pressed
-    connect(study_1,&a_study::up,this,&battle_scene::up);
-    connect(group_2,&b_group::up,this,&battle_scene::up);
-    connect(overnight_3,&c_overnight::up,this,&battle_scene::up);
-    connect(run_4,&d_run::up,this,&battle_scene::up);
 
     //when down is pressed
     connect(study_1,&a_study::down,this,&battle_scene::down);
@@ -85,11 +81,18 @@ battle_scene::battle_scene(string player_name)
     connect(overnight_3,&c_overnight::down,this,&battle_scene::down);
     connect(run_4,&d_run::down,this,&battle_scene::down);
 
+    //when up is pressed
+    connect(study_1,&a_study::up,this,&battle_scene::up);
+    connect(group_2,&b_group::up,this,&battle_scene::up);
+    connect(overnight_3,&c_overnight::up,this,&battle_scene::up);
+    connect(run_4,&d_run::up,this,&battle_scene::up);
+
     //when 'y'(yes) is pressed
     connect(study_1,&a_study::yes,this,&battle_scene::yes);
     connect(group_2,&b_group::yes,this,&battle_scene::yes);
     connect(overnight_3,&c_overnight::yes,this,&battle_scene::yes);
     connect(run_4,&d_run::yes,this,&battle_scene::yes);
+
 }
 
 void battle_scene::up(int a) // Selecting the attack modes
@@ -136,9 +139,11 @@ void battle_scene::down(int a)
 
 void battle_scene::yes(int a)
 {
-    if(a == 1){                     //  study attack
-
-    }else if(a == 2){               //  group study attack
+    if(a == 1)
+    {                     //  study attack
+        battle_finish();
+    }
+    else if(a == 2){               //  group study attack
 
     }else if(a == 3){               //  overnight study attack
 
@@ -146,45 +151,67 @@ void battle_scene::yes(int a)
 
     }
 
-    if (player->health <= 0 or
-            enemy->health <= 0){
+    if (player->health <= 0 or enemy->health <= 0)
+    {
         battle_finish();
     }
 }
 
 void battle_scene::battle_finish()
 {
-    if(enemy->health <= 0){        // when player won
+    player->health = 100;       //health recovery
+    scene->removeItem(enemy_health);    //remove existing enemy
+    scene->removeItem(enemy);
+    delete enemy_health;
+    delete enemy;
 
-        player->health = 100;       //health recovery
-        scene->removeItem(enemy_health);    //remove existing enemy
-        scene->removeItem(enemy);
-        delete enemy_health;
-        delete enemy;
 
-        if (battle_stage == 1)
-        {
-            battle_stage ++;
-            add_new_enemy("enemy_python");  //append next enemy
-        }
-        else if(battle_stage == 2)
-        {
-            battle_stage ++;
-            add_new_enemy("enemy_cpp");
-        }//final round we gotta make something
-
-        emit battle_won(battle_stage);
+    if (battle_stage == 1)
+    {
+        battle_stage ++;
+        add_new_enemy("enemy_python");  //append next enemy
     }
-    else if(player->health <= 0)
-    {   // when player lost
-        emit battle_lost();
-    }
-    else
-    {   // when player successfully ran
-        emit battle_ran();
-    }
-
+    else if(battle_stage == 2)
+    {
+        battle_stage ++;
+        add_new_enemy("enemy_cpp");
+    }//final round 뭐 만들어야 할듯
+    emit battle_won(battle_stage);
 }
+
+//void battle_scene::battle_finish()
+//{
+//    int battle_stage = 1;
+//    if(enemy->health <= 0) // when player won
+//    {
+//        player->health = 100;       //health recovery
+//        scene->removeItem(enemy_health);    //remove existing enemy
+//        scene->removeItem(enemy);
+//        delete enemy_health;
+//        delete enemy;
+
+//        if (battle_stage == 1)
+//        {
+//            battle_stage ++;
+//            add_new_enemy("enemy_python");  //append next enemy
+//        }
+//        else if(battle_stage == 2)
+//        {
+//            battle_stage ++;
+//            add_new_enemy("enemy_cpp");
+//        }//final round 뭐 만들어야 할듯
+//        emit SIGNAL(battle_won(battle_stage));
+//    }
+//    else if(player->health <= 0)
+//    {   // when player lost
+//        emit battle_lost();
+//    }
+//    else
+//    {   // when player successfully ran
+//        emit battle_ran();
+//    }
+
+//}
 
 void battle_scene::add_new_enemy(string enemy_name)     //delete previous enemy and add next enemy
 {
