@@ -31,15 +31,15 @@ battle_scene::battle_scene(string player_name)
     //set up player health
     player_health = new QGraphicsTextItem();
     player_health->setPlainText(QString("Player Health: ") + QString::number(player->health));
-//    player_health->setFont(QFont("times",25));
-     player_health->setFont(QFont("times",18));
+    player_health->setFont(QFont("times",25));
+//     player_health->setFont(QFont("times",18));
     player_health->setDefaultTextColor(Qt::green);
 
     //set up enemy health
     enemy_health = new QGraphicsTextItem();
     enemy_health->setPlainText(QString("Enemy Health: ") + QString::number(player->health));
-//    enemy_health->setFont(QFont("times",25));
-    enemy_health->setFont(QFont("times",18));
+    enemy_health->setFont(QFont("times",25));
+//    enemy_health->setFont(QFont("times",18));
     enemy_health->setDefaultTextColor(Qt::red);
 
 
@@ -216,8 +216,8 @@ void battle_scene::add_new_enemy(string enemy_name)     //delete previous enemy 
     enemy = new Enemy(nullptr, enemy_name);
     enemy_health = new QGraphicsTextItem();
     enemy_health->setPlainText(QString("Enemy Health: ") + QString::number(enemy->health));
-//    enemy_health->setFont(QFont("times",25));
-    enemy_health->setFont(QFont("times",18));
+    enemy_health->setFont(QFont("times",25));
+//    enemy_health->setFont(QFont("times",18));
     enemy_health->setDefaultTextColor(Qt::red);
     enemy->setPos(800,300);
     enemy_health->setPos(750,20);
