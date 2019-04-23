@@ -14,6 +14,9 @@
 #include "battle_scene.h"
 #include "startingpage.h"
 
+// To play the soundtrack
+#include <QMediaPlayer>
+
 Game::Game(QObject *parent, string player) : QObject(parent)
 {
     set_player(player);
@@ -30,6 +33,13 @@ Game::Game(QObject *parent, string player) : QObject(parent)
     connect(battle,SIGNAL(battle_won(int)),this,SLOT(battle_won(int)));
     connect(battle,SIGNAL(battle_lost()),this,SLOT(battle_lost()));
 
+    // Play background music
+    music_dungeon  = new QMediaPlayer();
+    music_dungeon->setMedia(QUrl("qrc:/soundtracks/soundtracks/dungeon.mp3"));
+    music_dungeon->play();
+    music_battle = new QMediaPlayer();
+    music_battle->setMedia(QUrl("qrc:/soundtracks/soundtracks/battle.mp3"));
+
 }
 
 // Changes the player to the selected
@@ -40,6 +50,10 @@ void Game::set_player(string player)
 
 void Game::activate_battle()
 {
+    //background music
+    music_dungeon->stop();
+    music_battle->play();
+
     navigation_window->hide();
     battle->show();
     battle->study_1->setFocus();
@@ -51,6 +65,10 @@ void Game::restart_game()
 
     StartingPage StartingPage;
     StartingPage.show();
+
+    //background music
+    music_dungeon->stop();
+    music_battle->stop();
 }
 
 void Game::battle_won(int battle_stage)
@@ -66,6 +84,10 @@ void Game::battle_won(int battle_stage)
 
     battle->hide();
     navigation_window->show();
+
+    //background music
+    music_battle->stop();
+    music_dungeon->play();
 }
 
 void Game::battle_lost()
@@ -102,4 +124,8 @@ void Game::battle_ran()
 {
     battle->hide();
     navigation_window->show();
+
+    //background music
+    music_battle->stop();
+    music_dungeon->play();
 }

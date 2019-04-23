@@ -13,8 +13,6 @@
 #include "c_overnight.h"
 #include "d_run.h"
 
-
-
 class battle_scene : public QGraphicsView
 {
     Q_OBJECT
@@ -47,6 +45,7 @@ public slots:
     void up(int a);
     void down(int a);
     void yes(int a);
+
 };
 
 #endif // BATTLE_SCENE_H

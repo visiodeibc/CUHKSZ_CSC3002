@@ -3,6 +3,9 @@
 
 #include <QWidget>
 
+// To play the soundtrack
+#include <QMediaPlayer>
+
 namespace Ui {
 class StartingPage;
 }
@@ -27,6 +30,9 @@ private slots:
 
 private:
     Ui::StartingPage *ui;
+
+    // Setup for the soundtrack
+    QMediaPlayer * music_sp;
 };
 
 #endif // STARTINGPAGE_H

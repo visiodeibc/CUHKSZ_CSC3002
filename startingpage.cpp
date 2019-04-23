@@ -5,6 +5,9 @@
 #include <QApplication>
 #include <QPixmap>
 
+// To play the soundtrack
+#include <QMediaPlayer>
+
 Game * game;
 
 StartingPage::StartingPage(QWidget *parent) :
@@ -12,6 +15,12 @@ StartingPage::StartingPage(QWidget *parent) :
     ui(new Ui::StartingPage)
 {
     ui->setupUi(this);
+
+    // Play background music
+    music_sp = new QMediaPlayer();
+    music_sp->setMedia(QUrl("qrc:/soundtracks/soundtracks/start_game.mp3"));
+    music_sp->play();
+
 }
 
 StartingPage::~StartingPage()
@@ -40,5 +49,8 @@ void StartingPage::on_pushButton_clicked()
 {
     this->hide();
     game = new Game(nullptr, player);
+
+    //Stop background music
+    music_sp->stop();
 }
 

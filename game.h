@@ -12,6 +12,9 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 
+// To play the soundtrack
+#include <QMediaPlayer>
+
 
 class Game: public QObject
 {
@@ -33,6 +36,12 @@ public slots:
     void battle_won(int battle_stage);
     void battle_lost();
     void battle_ran();
+
+private:
+    // Setup for the soundtrack
+    QMediaPlayer * music_dungeon;
+    QMediaPlayer * music_battle;
+
 };
 
 #endif // GAME_H
