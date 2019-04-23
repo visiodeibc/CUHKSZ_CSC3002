@@ -8,14 +8,13 @@
 #include <QGraphicsScene>
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QMessageBox>
+#include <QMediaPlayer>
 
 #include "game.h"
 #include "player.h"
 #include "battle_scene.h"
 #include "startingpage.h"
-
-// To play the soundtrack
-#include <QMediaPlayer>
 
 Game::Game(QObject *parent, string player) : QObject(parent)
 {
@@ -33,12 +32,13 @@ Game::Game(QObject *parent, string player) : QObject(parent)
     connect(battle,SIGNAL(battle_won(int)),this,SLOT(battle_won(int)));
     connect(battle,SIGNAL(battle_lost()),this,SLOT(battle_lost()));
 
-    // Play background music
     music_dungeon  = new QMediaPlayer();
     music_dungeon->setMedia(QUrl("qrc:/soundtracks/soundtracks/dungeon.mp3"));
     music_dungeon->play();
+
+    // background music for battle scene
     music_battle = new QMediaPlayer();
-    music_battle->setMedia(QUrl("qrc:/soundtracks/soundtracks/battle.mp3"));
+    music_battle->setMedia(QUrl("qrc:/soundtracks/soundtracks/closing.mp3"));
 
 }
 
@@ -50,25 +50,51 @@ void Game::set_player(string player)
 
 void Game::activate_battle()
 {
-    //background music
-    music_dungeon->stop();
-    music_battle->play();
 
-    navigation_window->hide();
-    battle->show();
-    battle->study_1->setFocus();
+    if ( (battle->battle_stage == 1 && player_navigation->pos().x() == 150.0) ||
+         (battle->battle_stage == 2 && player_navigation->pos().x() == 450.0) ||
+         (battle->battle_stage == 3 && player_navigation->pos().x() == 950.0) )
+    {
+        switch( QMessageBox::question(navigation_window,
+                    tr("Dungeon and Studies"),
+                    tr("Are you sure you want to enter?"),
+
+                    QMessageBox::Yes |
+                    QMessageBox::No ) )
+        {
+          case QMessageBox::Yes: // If user chooses to enter the battle
+           music_dungeon->stop();
+           navigation_window->hide();
+           battle->show();
+           music_battle->play();
+           battle->study_1->setFocus();
+           break;
+          case QMessageBox::Cancel:
+            qDebug( "cancel" );
+            break;
+          default:
+            qDebug( "close" );
+            break;
+        }
+    }
+    else
+    {
+        QMessageBox::warning(navigation_window,
+                tr("Dungeon and Studies"),
+                tr("You have no permission to enter this room.") );
+    }
+
 }
+
 
 void Game::restart_game()
 {
     // Show the starting page
 
+    music_dungeon->stop();
+
     StartingPage StartingPage;
     StartingPage.show();
-
-    //background music
-    music_dungeon->stop();
-    music_battle->stop();
 }
 
 void Game::battle_won(int battle_stage)
@@ -82,12 +108,10 @@ void Game::battle_won(int battle_stage)
     {
     }
 
+    //background music
+    music_dungeon->stop();
     battle->hide();
     navigation_window->show();
-
-    //background music
-    music_battle->stop();
-    music_dungeon->play();
 }
 
 void Game::battle_lost()
@@ -118,14 +142,13 @@ void Game::battle_lost()
     connect(quit, SIGNAL(clicked()), battle, SLOT(close()));
     connect(quit, SIGNAL(clicked()), game_over_menu, SLOT(close()));
     connect(quit, SIGNAL(clicked()), this, SLOT(close()));
+
+    //background music
+    music_dungeon->play();
 }
 
 void Game::battle_ran()
 {
     battle->hide();
     navigation_window->show();
-
-    //background music
-    music_battle->stop();
-    music_dungeon->play();
 }

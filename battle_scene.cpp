@@ -10,6 +10,8 @@
 #include <QApplication>
 #include <QLabel>
 #include <QObject>
+
+//recently added
 #include <QPushButton>
 #include <QHBoxLayout>
 
@@ -19,6 +21,8 @@ battle_scene::battle_scene(string player_name)
     enemy = new Enemy(nullptr,"enemy_calculus");
     player = new Player(nullptr,player_name);
 
+    battle_stage = 1;
+
     //create a scene
     scene =  new QGraphicsScene;
     scene->setSceneRect(0,0,1200,800);
@@ -27,13 +31,15 @@ battle_scene::battle_scene(string player_name)
     //set up player health
     player_health = new QGraphicsTextItem();
     player_health->setPlainText(QString("Player Health: ") + QString::number(player->health));
-    player_health->setFont(QFont("times",25));
+//    player_health->setFont(QFont("times",25));
+     player_health->setFont(QFont("times",18));
     player_health->setDefaultTextColor(Qt::green);
 
     //set up enemy health
     enemy_health = new QGraphicsTextItem();
     enemy_health->setPlainText(QString("Enemy Health: ") + QString::number(player->health));
-    enemy_health->setFont(QFont("times",25));
+//    enemy_health->setFont(QFont("times",25));
+    enemy_health->setFont(QFont("times",18));
     enemy_health->setDefaultTextColor(Qt::red);
 
 
@@ -66,18 +72,10 @@ battle_scene::battle_scene(string player_name)
     scene->addItem(player_health);
     scene->addItem(enemy_health);
 
-
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(1200,800);
     setScene(scene);
-
-
-    //when up is pressed
-    connect(study_1,&a_study::up,this,&battle_scene::up);
-    connect(group_2,&b_group::up,this,&battle_scene::up);
-    connect(overnight_3,&c_overnight::up,this,&battle_scene::up);
-    connect(run_4,&d_run::up,this,&battle_scene::up);
 
     //when down is pressed
     connect(study_1,&a_study::down,this,&battle_scene::down);
@@ -85,11 +83,18 @@ battle_scene::battle_scene(string player_name)
     connect(overnight_3,&c_overnight::down,this,&battle_scene::down);
     connect(run_4,&d_run::down,this,&battle_scene::down);
 
+    //when up is pressed
+    connect(study_1,&a_study::up,this,&battle_scene::up);
+    connect(group_2,&b_group::up,this,&battle_scene::up);
+    connect(overnight_3,&c_overnight::up,this,&battle_scene::up);
+    connect(run_4,&d_run::up,this,&battle_scene::up);
+
     //when 'y'(yes) is pressed
     connect(study_1,&a_study::yes,this,&battle_scene::yes);
     connect(group_2,&b_group::yes,this,&battle_scene::yes);
     connect(overnight_3,&c_overnight::yes,this,&battle_scene::yes);
     connect(run_4,&d_run::yes,this,&battle_scene::yes);
+
 }
 
 void battle_scene::up(int a) // Selecting the attack modes
@@ -136,7 +141,7 @@ void battle_scene::down(int a)
 
 void battle_scene::yes(int a)
 {
-    float hit_probability = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+    double hit_probability = static_cast <double> (rand()) / static_cast <double> (RAND_MAX);
     if(a == 1){                     //  study attack
         // Player attacking enemy
         if (hit_probability <= 0.9){
@@ -175,8 +180,8 @@ void battle_scene::yes(int a)
 
 void battle_scene::battle_finish()
 {
-    if(enemy->health <= 0){        // when player won
-
+    if(enemy->health <= 0)       // when player won
+    {
         player->health = 100;       //health recovery
         scene->removeItem(enemy_health);    //remove existing enemy
         scene->removeItem(enemy);
@@ -204,7 +209,6 @@ void battle_scene::battle_finish()
     {   // when player successfully ran
         emit battle_ran();
     }
-
 }
 
 void battle_scene::add_new_enemy(string enemy_name)     //delete previous enemy and add next enemy
@@ -212,10 +216,39 @@ void battle_scene::add_new_enemy(string enemy_name)     //delete previous enemy 
     enemy = new Enemy(nullptr, enemy_name);
     enemy_health = new QGraphicsTextItem();
     enemy_health->setPlainText(QString("Enemy Health: ") + QString::number(enemy->health));
-    enemy_health->setFont(QFont("times",25));
+//    enemy_health->setFont(QFont("times",25));
+    enemy_health->setFont(QFont("times",18));
     enemy_health->setDefaultTextColor(Qt::red);
     enemy->setPos(800,300);
     enemy_health->setPos(750,20);
     scene->addItem(enemy);
     scene->addItem(enemy_health);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

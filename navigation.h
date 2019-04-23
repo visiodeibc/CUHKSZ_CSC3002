@@ -9,6 +9,7 @@
 #include "player.h"
 #include "enemy.h"
 
+
 class Navigation : public QGraphicsView
 {
 public:

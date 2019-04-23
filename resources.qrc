@@ -1,4 +1,13 @@
 <RCC>
+    <qresource prefix="/soundtracks">
+        <file>soundtracks/battle.mp3</file>
+        <file>soundtracks/closing.mp3</file>
+        <file>soundtracks/defeat.mp3</file>
+        <file>soundtracks/dungeon.mp3</file>
+        <file>soundtracks/opening_story.mp3</file>
+        <file>soundtracks/start_game.mp3</file>
+        <file>soundtracks/victory.mp3</file>
+    </qresource>
     <qresource prefix="/images">
         <file>images/bg.png</file>
         <file>images/cool.png</file>
@@ -12,14 +21,5 @@
         <file>images/battlebg.png</file>
         <file>images/main_smart.png</file>
         <file>images/smart.png</file>
-    </qresource>
-    <qresource prefix="/soundtracks">
-        <file>soundtracks/battle.mp3</file>
-        <file>soundtracks/closing.mp3</file>
-        <file>soundtracks/defeat.mp3</file>
-        <file>soundtracks/dungeon.mp3</file>
-        <file>soundtracks/opening_story.mp3</file>
-        <file>soundtracks/start_game.mp3</file>
-        <file>soundtracks/victory.mp3</file>
     </qresource>
 </RCC>

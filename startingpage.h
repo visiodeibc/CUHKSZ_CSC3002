@@ -2,8 +2,6 @@
 #define STARTINGPAGE_H
 
 #include <QWidget>
-
-// To play the soundtrack
 #include <QMediaPlayer>
 
 namespace Ui {

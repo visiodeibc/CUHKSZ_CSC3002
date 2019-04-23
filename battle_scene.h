@@ -3,6 +3,7 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QGraphicsTextItem>
+
 #include "navigation.h"
 
 #include "player.h"
@@ -12,6 +13,8 @@
 #include "b_group.h"
 #include "c_overnight.h"
 #include "d_run.h"
+
+
 
 class battle_scene : public QGraphicsView
 {

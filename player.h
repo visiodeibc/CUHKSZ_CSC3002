@@ -2,10 +2,11 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include<QGraphicsPixmapItem>
-#include<QObject>
-#include<QGraphicsItem>
-#include<QGraphicsView>
+#include <QGraphicsPixmapItem>
+#include <QObject>
+#include <QGraphicsItem>
+#include <QGraphicsView>
+
 
 
 class battle_scene;
@@ -29,6 +30,7 @@ public:
 
 signals:
     void change_view();
+    void inaccessible();
 
 };
 

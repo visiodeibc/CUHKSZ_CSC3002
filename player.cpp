@@ -67,7 +67,8 @@ void Player::keyPressEvent(QKeyEvent *event)
 
         if(pos().y() == 250.0)
         {
-            if (event->key()== Qt::Key_A){
+            if (event->key()== Qt::Key_A)
+            {
                 emit change_view();
             }
         }
