@@ -21,5 +21,9 @@
         <file>images/battlebg.png</file>
         <file>images/main_smart.png</file>
         <file>images/smart.png</file>
+        <file>images/test_gif.gif</file>
+        <file>images/prologue1.png</file>
+        <file>images/prologue2.png</file>
+        <file>images/prologue3.png</file>
     </qresource>
 </RCC>

@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QMediaPlayer>
+#include "prologue.h"
 
 namespace Ui {
 class StartingPage;
@@ -15,6 +16,9 @@ class StartingPage : public QWidget
 public:
     explicit StartingPage(QWidget *parent = nullptr);
     ~StartingPage();
+
+    Prologue * prologue;
+    string player = "cool";
 
 private slots:
 

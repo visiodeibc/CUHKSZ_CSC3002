@@ -18,6 +18,7 @@
 
 Game::Game(QObject *parent, string player) : QObject(parent)
 {
+
     set_player(player);
     player_navigation = new Player(nullptr, player_name);
     navigation_window = new Navigation(player_navigation);
@@ -109,7 +110,9 @@ void Game::battle_won(int battle_stage)
     }
 
     //background music
-    music_dungeon->stop();
+    music_battle->stop();
+    music_dungeon->play();
+
     battle->hide();
     navigation_window->show();
 }
@@ -144,11 +147,14 @@ void Game::battle_lost()
     connect(quit, SIGNAL(clicked()), this, SLOT(close()));
 
     //background music
+    music_battle->stop();
     music_dungeon->play();
 }
 
 void Game::battle_ran()
 {
+    music_battle->stop();
+    music_dungeon->play();
     battle->hide();
     navigation_window->show();
 }

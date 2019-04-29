@@ -6,7 +6,13 @@
 #include <QPixmap>
 #include <QMediaPlayer>
 
-Game * game;
+#include "prologue.h"
+
+#include "game.h"
+#include "player.h"
+#include "battle_scene.h"
+#include "startingpage.h"
+
 
 StartingPage::StartingPage(QWidget *parent) :
     QWidget(parent),
@@ -24,8 +30,6 @@ StartingPage::~StartingPage()
 {
     delete ui;
 }
-
-string player = "cool";
 
 void StartingPage::on_radioButton1_clicked()
 {
@@ -45,9 +49,10 @@ void StartingPage::on_radioButton3_clicked()
 void StartingPage::on_pushButton_clicked()
 {
     this->hide();
-    game = new Game(nullptr, player);
-
-    // Stop background music
     music_sp->stop();
+
+    // Show the prologue screen first, before proceeding to game
+    prologue = new Prologue(player);
+    prologue->show();
 }
 
