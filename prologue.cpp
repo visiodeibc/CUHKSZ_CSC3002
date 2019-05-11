@@ -30,7 +30,7 @@ Prologue::Prologue(string player)
     //add item to the scene
     setScene(scene);
 
-    scene->setBackgroundBrush(QBrush(QImage(":/images/images/prologue1.png")));
+    scene->setBackgroundBrush(QBrush(QImage(":/images/images/prologue_scene_1.png")));
 
     // Implement the Next button
     QPushButton * next_button = new QPushButton("Next");
@@ -73,11 +73,11 @@ void Prologue::change_screen()
 {
     if (frame_number == 2)
     {
-        scene->setBackgroundBrush(QBrush(QImage(":/images/images/prologue_scene_1.png")));
+        scene->setBackgroundBrush(QBrush(QImage(":/images/images/prologue_scene_2.png")));
     }
     else if (frame_number == 3)
     {
-        scene->setBackgroundBrush(QBrush(QImage(":/images/images/prologue_scene_2.png")));
+        scene->setBackgroundBrush(QBrush(QImage(":/images/images/prologue_scene_1.png")));
     }
 }
 
