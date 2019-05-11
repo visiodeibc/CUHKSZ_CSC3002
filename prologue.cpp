@@ -1,5 +1,4 @@
 #include "prologue.h"
-#include "ui_prologue.h"
 #include "game.h"
 
 #include <QObject>
@@ -74,11 +73,11 @@ void Prologue::change_screen()
 {
     if (frame_number == 2)
     {
-        scene->setBackgroundBrush(QBrush(QImage(":/images/images/prologue2.png")));
+        scene->setBackgroundBrush(QBrush(QImage(":/images/images/prologue_scene_1.png")));
     }
     else if (frame_number == 3)
     {
-        scene->setBackgroundBrush(QBrush(QImage(":/images/images/prologue3.png")));
+        scene->setBackgroundBrush(QBrush(QImage(":/images/images/prologue_scene_2.png")));
     }
 }
 

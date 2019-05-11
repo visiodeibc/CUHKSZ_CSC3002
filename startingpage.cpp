@@ -23,7 +23,7 @@ StartingPage::StartingPage(QWidget *parent) :
     // Play background music
     music_sp = new QMediaPlayer();
     music_sp->setMedia(QUrl("qrc:/soundtracks/soundtracks/start_game.mp3"));
-    music_sp->play();
+//    music_sp->play();
 }
 
 StartingPage::~StartingPage()

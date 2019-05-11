@@ -42,6 +42,8 @@ signals:
     void battle_lost();
     void battle_ran();
 
+    void player_hit(); // Signal when player is attacked successfully
+
 public slots:
 
     void battle_finish();
