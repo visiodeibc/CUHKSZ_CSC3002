@@ -4,6 +4,7 @@
 #include "navigation.h"
 #include "player.h"
 #include "battle_scene.h"
+#include "battle_scene.h"
 
 #include <QWidget>
 #include <QPushButton>
@@ -25,6 +26,7 @@ public:
     Player * player_navigation;
     string player_name;
     battle_scene * battle;
+    game_over * over;
 
 public slots:
 

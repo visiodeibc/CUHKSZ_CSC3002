@@ -39,7 +39,8 @@ SOURCES += \
     b_group.cpp \
     c_overnight.cpp \
     d_run.cpp \
-    prologue.cpp
+    prologue.cpp \
+    game_over.cpp
 
 HEADERS += \
     player.h \
@@ -52,7 +53,8 @@ HEADERS += \
     b_group.h \
     c_overnight.h \
     d_run.h \
-    prologue.h
+    prologue.h \
+    game_over.h
 
 FORMS += \
     startingpage.ui

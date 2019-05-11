@@ -22,6 +22,8 @@ Game::Game(QObject *parent, string player) : QObject(parent)
     set_player(player);
     player_navigation = new Player(nullptr, player_name);
     navigation_window = new Navigation(player_navigation);
+    over = new game_over(); // Creates the game over screen.
+
     navigation_window->show();
     battle = new battle_scene(player_name);
 
@@ -109,6 +111,14 @@ void Game::battle_won(int battle_stage)
     {
     }
 
+    // If all the battle stages are won, hide all windows except game_over.
+    if(battle_stage == 3)
+    {
+        battle->hide();
+        navigation_window->hide();
+        over->show();
+    }
+
     //background music
     music_battle->stop();
     music_dungeon->play();
@@ -119,7 +129,6 @@ void Game::battle_won(int battle_stage)
 
 void Game::battle_lost()
 {
-
     QWidget* game_over_menu = new QWidget;
     QLabel* you_lose = new QLabel("<h1> You lost the game! </h1>");
 

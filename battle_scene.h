@@ -5,6 +5,7 @@
 #include <QGraphicsTextItem>
 
 #include "navigation.h"
+#include "game_over.h"
 
 #include "player.h"
 #include "enemy.h"
@@ -27,6 +28,9 @@ public:
     Player * player;
     Enemy * enemy;
     QGraphicsScene * scene;
+
+    game_over over;
+
     a_study  * study_1;
     b_group * group_2;
     c_overnight * overnight_3;
