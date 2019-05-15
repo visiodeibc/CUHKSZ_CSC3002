@@ -5,8 +5,8 @@
 c_overnight::c_overnight()
 {
     setPlainText("3.Overnight Study");
-    setFont(QFont("times",18));
-    setDefaultTextColor(Qt::black);
+    setFont(QFont("Minecraft",15));
+    setDefaultTextColor(Qt::white);
     setFlag(QGraphicsItem::ItemIsFocusable);
 }
 

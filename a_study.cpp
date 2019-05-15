@@ -5,7 +5,7 @@
 a_study::a_study()
 {
     setPlainText("1.Study");
-    setFont(QFont("times",18));
+    setFont(QFont("Minecraft",15));
     setDefaultTextColor(Qt::yellow);
     setFlag(QGraphicsItem::ItemIsFocusable);
 }

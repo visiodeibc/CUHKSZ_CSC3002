@@ -5,8 +5,8 @@
 b_group::b_group()
 {
     setPlainText("2.Group Study");
-    setFont(QFont("times",18));
-    setDefaultTextColor(Qt::black);
+    setFont(QFont("Minecraft",15));
+    setDefaultTextColor(Qt::white);
     setFlag(QGraphicsItem::ItemIsFocusable);
 }
 

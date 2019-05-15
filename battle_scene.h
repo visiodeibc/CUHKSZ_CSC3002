@@ -38,6 +38,7 @@ public:
 
     QGraphicsTextItem * player_health;
     QGraphicsTextItem * enemy_health;
+    QGraphicsTextItem * action;
 
     int battle_stage;
 
@@ -47,10 +48,14 @@ signals:
     void battle_ran();
 
     void player_hit(); // Signal when player is attacked successfully
+    void enemy_hit(); // Signal when enemy is attacked successfully
 
 public slots:
 
     void battle_finish();
+
+//    void battle_skip(); // Function for battle_ran()
+
     void up(int a);
     void down(int a);
     void yes(int a);

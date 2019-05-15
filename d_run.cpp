@@ -5,8 +5,8 @@
 d_run::d_run()
 {
     setPlainText("4.Run");
-    setFont(QFont("times",18));
-    setDefaultTextColor(Qt::black);
+    setFont(QFont("Minecraft",15));
+    setDefaultTextColor(Qt::white);
     setFlag(QGraphicsItem::ItemIsFocusable);
 }
 

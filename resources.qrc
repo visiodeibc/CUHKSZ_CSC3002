@@ -7,6 +7,9 @@
         <file>soundtracks/opening_story.mp3</file>
         <file>soundtracks/start_game.mp3</file>
         <file>soundtracks/victory.mp3</file>
+        <file>images/enemy_calculus1.png</file>
+        <file>images/enemy_cpp1.png</file>
+        <file>images/enemy_python1.png</file>
     </qresource>
     <qresource prefix="/images">
         <file>images/bg.png</file>
@@ -26,7 +29,22 @@
         <file>images/prologue3.png</file>
         <file>images/main_cool.gif</file>
         <file>images/main_cool1.png</file>
-        <file>images/prologue_scene_1.png</file>
-        <file>images/prologue_scene_2.png</file>
+        <file>images/main_lazy1.png</file>
+        <file>images/main_smart1.png</file>
+        <file>images/p1.png</file>
+        <file>images/p2.png</file>
+        <file>images/p3.png</file>
+        <file>images/p4.png</file>
+        <file>images/p5.png</file>
+        <file>images/p6.png</file>
+        <file>images/p7.png</file>
+        <file>images/enemy_calculus1.png</file>
+        <file>images/enemy_cpp1.png</file>
+        <file>images/enemy_python1.png</file>
+        <file>images/battlebg1.png</file>
     </qresource>
+    <qresource prefix="/fonts">
+        <file>fonts/Minecraft.ttf</file>
+    </qresource>
+    <qresource prefix="/"/>
 </RCC>

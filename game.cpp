@@ -42,7 +42,6 @@ Game::Game(QObject *parent, string player) : QObject(parent)
     // background music for battle scene
     music_battle = new QMediaPlayer();
     music_battle->setMedia(QUrl("qrc:/soundtracks/soundtracks/closing.mp3"));
-
 }
 
 // Changes the player to the selected
