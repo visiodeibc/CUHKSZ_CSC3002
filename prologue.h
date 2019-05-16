@@ -2,7 +2,7 @@
 #define PROLOGUE_H
 
 #include <QGraphicsScene>
-#include <QGraphicsScene>
+#include <QMediaPlayer>
 #include "player.h"
 #include "enemy.h"
 
@@ -20,6 +20,9 @@ public:
 
 private:
     inline void change_screen();
+
+    // Setup for the soundtrack
+    QMediaPlayer * music_pr;
 
 public slots:
     void skip_prologue();

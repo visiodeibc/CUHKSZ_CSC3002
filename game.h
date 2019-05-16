@@ -26,7 +26,7 @@ public:
     Player * player_navigation;
     string player_name;
     battle_scene * battle;
-    game_over * over;
+    Game_Over * game_over_window;
 
 public slots:
 
@@ -40,6 +40,7 @@ public slots:
 private:
     QMediaPlayer * music_dungeon;
     QMediaPlayer * music_battle;
+    QMediaPlayer * music_closing;
 
 };
 

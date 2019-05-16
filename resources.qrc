@@ -2,11 +2,9 @@
     <qresource prefix="/soundtracks">
         <file>soundtracks/battle.mp3</file>
         <file>soundtracks/closing.mp3</file>
-        <file>soundtracks/defeat.mp3</file>
         <file>soundtracks/dungeon.mp3</file>
         <file>soundtracks/opening_story.mp3</file>
         <file>soundtracks/start_game.mp3</file>
-        <file>soundtracks/victory.mp3</file>
         <file>images/enemy_calculus1.png</file>
         <file>images/enemy_cpp1.png</file>
         <file>images/enemy_python1.png</file>
@@ -42,6 +40,7 @@
         <file>images/enemy_cpp1.png</file>
         <file>images/enemy_python1.png</file>
         <file>images/battlebg1.png</file>
+        <file>images/closing.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>fonts/Minecraft.ttf</file>

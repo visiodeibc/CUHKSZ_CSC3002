@@ -11,16 +11,22 @@ Enemy::Enemy(QGraphicsItem * parent, string character): QGraphicsPixmapItem(pare
     {
         enemy_type = "enemy_calculus";
         setPixmap(QPixmap(":/images/images/enemy_calculus.png"));
+
+        damage_amount = 20;
     }
     else if(character == "enemy_python")
     {
         enemy_type = "enemy_python";
         setPixmap(QPixmap(":/images/images/enemy_python.png"));
+
+        damage_amount = 30;
     }
     else // when enemy is cpp
     {
         enemy_type = "enemy_cpp";
         setPixmap(QPixmap(":/images/images/enemy_cpp.png"));
+
+        damage_amount = 100;
     }
     health = 100;
     setFlag(QGraphicsItem::ItemIsFocusable);
@@ -86,6 +92,4 @@ void Enemy::animate()
     }
 
     picCounter++;
-//    if (picCounter == 3)
-//        picCounter = 0;
 }

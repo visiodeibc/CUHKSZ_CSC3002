@@ -1,21 +1,17 @@
-#include "prologue.h"
-#include "game.h"
 #include "game_over.h"
+#include "game.h"
+#include "startingpage.h"
 
-#include <QObject>
-#include <QDebug>
 #include <QPushButton>
-#include <QGraphicsRectItem>
-#include <QGraphicsPixmapItem>
-#include <QPixmap>
+#include <QtGui>
+#include <QHBoxLayout>
+#include <QApplication>
+#include <QLabel>
+#include <QObject>
+#include <QProcess>
 
-using namespace std;
-
-game_over::game_over()
+Game_Over::Game_Over()
 {
-
-    frame_number = 1;
-
     //create a scene
     scene = new QGraphicsScene;
     scene->setSceneRect(0,0,1200,800);
@@ -27,34 +23,48 @@ game_over::game_over()
 
     //add item to the scene
     setScene(scene);
+    scene->setSceneRect(0,0,1200,800);
+    scene->setBackgroundBrush(QBrush(QImage(":/images/images/closing.png")));
 
-    scene->setBackgroundBrush(QBrush(QImage(":/images/images/prologue1.png")));
+    // Implement the restart button
+    QPushButton * restart_button = new QPushButton("Restart");
+    restart_button->move(500,550);
+    restart_button->setFixedHeight(40);
+    restart_button->setFixedWidth(200);
+    restart_button->setStyleSheet("width: 200px");
+    scene->addWidget(restart_button);
 
-    // Implement the Next button
-    QPushButton * next_button = new QPushButton("Next");
-    next_button->move(300,500);
-    next_button->setFixedHeight(40);
-    next_button->setFixedWidth(200);
-    next_button->setStyleSheet("width: 200px");
-    scene->addWidget(next_button);
+    // Implement the exit buttony
+    QPushButton * exit_button = new QPushButton("Exit");
+    exit_button->move(500,650);
+    exit_button->setFixedHeight(40);
+    exit_button->setFixedWidth(200);
+    exit_button->setStyleSheet("width: 200px");
+    scene->addWidget(exit_button);
 
-    // Implement the skip button
-    QPushButton * skip_button = new QPushButton("Skip");
-    skip_button->move(700,500);
-    skip_button->setFixedHeight(40);
-    skip_button->setFixedWidth(200);
-    skip_button->setStyleSheet("width: 200px");
-    scene->addWidget(skip_button);
+    // restart button: restart the game
+    connect(restart_button, &QPushButton::clicked, [](){
+        qApp->quit();
+        QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
+    }
+    );
+
+    // exit button: exit the game
+    connect(exit_button, &QPushButton::clicked, [this](){
+        exit();
+    }
+    );
+
 }
 
-void Prologue::change_screen()
+void Game_Over::restart()
 {
-    if (frame_number == 2)
-    {
-        scene->setBackgroundBrush(QBrush(QImage(":/images/images/prologue_scene_1.png")));
-    }
-    else if (frame_number == 3)
-    {
-        scene->setBackgroundBrush(QBrush(QImage(":/images/images/prologue_scene_2.png")));
-    }
+    this->hide();
+    StartingPage StartingPage;
+    StartingPage.show();
+}
+void Game_Over::exit()
+{
+    close();
+    qApp->quit();
 }

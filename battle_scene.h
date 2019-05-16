@@ -29,8 +29,6 @@ public:
     Enemy * enemy;
     QGraphicsScene * scene;
 
-    game_over over;
-
     a_study  * study_1;
     b_group * group_2;
     c_overnight * overnight_3;
@@ -41,6 +39,9 @@ public:
     QGraphicsTextItem * action;
 
     int battle_stage;
+
+    void battle_skip(); // Skip the round if player manages to skip
+
 
 signals:
     void battle_won(int battle_stage);

@@ -1,11 +1,15 @@
 #include "c_overnight.h"
 #include <QFont>
+#include <QApplication>
 #include <QKeyEvent>
 
 c_overnight::c_overnight()
 {
+    QFont newFont("Courier", 20, QFont::Bold, false);
+    QApplication::setFont(newFont);
+
     setPlainText("3.Overnight Study");
-    setFont(QFont("Minecraft",15));
+
     setDefaultTextColor(Qt::white);
     setFlag(QGraphicsItem::ItemIsFocusable);
 }

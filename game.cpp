@@ -10,6 +10,7 @@
 #include <QDesktopWidget>
 #include <QMessageBox>
 #include <QMediaPlayer>
+#include <QProcess>
 
 #include "game.h"
 #include "player.h"
@@ -22,7 +23,9 @@ Game::Game(QObject *parent, string player) : QObject(parent)
     set_player(player);
     player_navigation = new Player(nullptr, player_name);
     navigation_window = new Navigation(player_navigation);
-    over = new game_over(); // Creates the game over screen.
+
+    // Create game over window
+    game_over_window = new Game_Over();
 
     navigation_window->show();
     battle = new battle_scene(player_name);
@@ -35,13 +38,21 @@ Game::Game(QObject *parent, string player) : QObject(parent)
     connect(battle,SIGNAL(battle_won(int)),this,SLOT(battle_won(int)));
     connect(battle,SIGNAL(battle_lost()),this,SLOT(battle_lost()));
 
+    // background music for the dungeon (dungeon.mp3)
     music_dungeon  = new QMediaPlayer();
     music_dungeon->setMedia(QUrl("qrc:/soundtracks/soundtracks/dungeon.mp3"));
+    music_dungeon->setVolume(75);
     music_dungeon->play();
 
-    // background music for battle scene
+    // background music for battle scene (battle.mp3)
     music_battle = new QMediaPlayer();
-    music_battle->setMedia(QUrl("qrc:/soundtracks/soundtracks/closing.mp3"));
+    music_battle->setMedia(QUrl("qrc:/soundtracks/soundtracks/battle.mp3"));
+    music_battle->setVolume(75);
+
+    // background music for closing (closing.mp3)
+    music_closing = new QMediaPlayer();
+    music_closing->setMedia(QUrl("qrc:/soundtracks/soundtracks/closing.mp3"));
+    music_closing->setVolume(75);
 }
 
 // Changes the player to the selected
@@ -72,10 +83,8 @@ void Game::activate_battle()
            battle->study_1->setFocus();
            break;
           case QMessageBox::Cancel:
-            qDebug( "cancel" );
             break;
           default:
-            qDebug( "close" );
             break;
         }
     }
@@ -94,6 +103,7 @@ void Game::restart_game()
     // Show the starting page
 
     music_dungeon->stop();
+    music_battle->stop();
 
     StartingPage StartingPage;
     StartingPage.show();
@@ -111,19 +121,17 @@ void Game::battle_won(int battle_stage)
     }
 
     // If all the battle stages are won, hide all windows except game_over.
-    if(battle_stage == 3)
+    if(battle_stage == 4)
     {
         battle->hide();
+        music_battle->stop();
+
         navigation_window->hide();
-        over->show();
+        music_dungeon->stop();
+
+        game_over_window->show();
+        music_closing->play();
     }
-
-    //background music
-    music_battle->stop();
-    music_dungeon->play();
-
-    battle->hide();
-    navigation_window->show();
 }
 
 void Game::battle_lost()
@@ -146,13 +154,17 @@ void Game::battle_lost()
     game_over_menu->setLayout(layout);
     game_over_menu->show();
 
-    connect(restart, SIGNAL(clicked()), battle, SLOT(close()));
-    connect(restart, SIGNAL(clicked()), game_over_menu, SLOT(close()));
-    connect(restart, SIGNAL(clicked()), this, SLOT(activate()));
+    connect(restart, &QPushButton::clicked, [](){
+        qApp->quit();
+        QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
+    }
+    );
 
-    connect(quit, SIGNAL(clicked()), battle, SLOT(close()));
-    connect(quit, SIGNAL(clicked()), game_over_menu, SLOT(close()));
-    connect(quit, SIGNAL(clicked()), this, SLOT(close()));
+    // exit button: exit the game
+    connect(quit, &QPushButton::clicked, [](){
+        exit(1);
+    }
+    );
 
     //background music
     music_battle->stop();

@@ -14,39 +14,62 @@
 #include <QFontDatabase>
 #include <QMessageBox>
 
-
-
 battle_scene::battle_scene(string player_name)
 {
+//    QFontDatabase::addApplicationFont(":/fonts/Minecraft.ttf");
 
-    QFontDatabase::addApplicationFont(":/fonts/Minecraft.ttf");
-
-    enemy = new Enemy(nullptr,"enemy_calculus");
-    player = new Player(nullptr,player_name);
+    QFont newFont("Courier", 20, QFont::Bold, false);
+    QApplication::setFont(newFont);
 
     battle_stage = 1;
+
+    if (battle_stage == 1)
+    {
+         enemy = new Enemy(nullptr, "enemy_calculus");
+    }
+    else if (battle_stage == 2)
+    {
+         enemy = new Enemy(nullptr, "enemy_python");
+    }
+    else if (battle_stage == 3)
+    {
+         enemy = new Enemy(nullptr, "enemy_cpp");
+    }
+//    enemy = new Enemy(nullptr);
+    player = new Player(nullptr,player_name);
 
     //create a scene
     scene =  new QGraphicsScene;
     scene->setSceneRect(0,0,1200,800);
     scene->setBackgroundBrush(QBrush(QImage(":/images/images/battlebg1.png")));
 
+    // Button to get to the page where player wins.
+    QPushButton * fast_forward = new QPushButton(">>");
+    fast_forward->move(500,50);
+    fast_forward->setFixedHeight(40);
+    fast_forward->setFixedWidth(50);
+    fast_forward->setStyleSheet("width: 200px");
+    scene->addWidget(fast_forward);
+
+    // Skip button: goes straight to the navigation scene
+    connect(fast_forward, &QPushButton::clicked, [this](){
+        emit battle_won(4);
+    }
+    );
+
     //set up player health
     player_health = new QGraphicsTextItem();
     player_health->setPlainText(QString("Player Health: ") + QString::number(player->health));
-    player_health->setFont(QFont("Minecraft",15));
     player_health->setDefaultTextColor(Qt::white);
 
     // Set up text box to display actions
     action = new QGraphicsTextItem();
-    action->setPlainText(QString("You have entered the \n battle room. "));
-    action->setFont(QFont("Minecraft",15));
+    action->setPlainText(QString("You have entered the \nbattle room. Press Y to attack. "));
     action->setDefaultTextColor(Qt::white);
 
     //set up enemy health
     enemy_health = new QGraphicsTextItem();
     enemy_health->setPlainText(QString("Enemy Health: ") + QString::number(player->health));
-    enemy_health->setFont(QFont("Minecraft",15));
     enemy_health->setDefaultTextColor(Qt::red);
 
 
@@ -155,9 +178,9 @@ void battle_scene::yes(int a)
     float hit_probability = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
     if(a == 1) //  study attack
     {
-        // Player attacking enemy
+        // Player attacking enemy, 5.85
         if (hit_probability <= 0.9){
-            int damage_amount = rand() % 4 + 4; // random int 4-7
+            int damage_amount = rand() % 6 + 4; // random int 4-7
             enemy->health = std::max(0, enemy->health - damage_amount); // Health can't go negative
             enemy_health->setPlainText(QString("Enemy Health: ") + QString::number(enemy->health));
 
@@ -179,7 +202,7 @@ void battle_scene::yes(int a)
         }
 
         // Enemy attacking player
-        int enemy_attack_damage_amount = rand() % 11 + 5; // random int 5-15
+        int enemy_attack_damage_amount = rand() % 6 + 5; // random int 5-15
         player->health = std::max(0, player->health - enemy_attack_damage_amount); // Health can't go negative
         player_health->setPlainText(QString("Player Health: ") + QString::number(player->health));
 
@@ -194,9 +217,9 @@ void battle_scene::yes(int a)
     }
     else if(a == 2) //  group study attack
     {
-        // Player attacking enemy
+        // Player attacking enemy, 10.5
         if (hit_probability <= 0.75){
-            int damage_amount = rand() % 5 + 5; // random int 5-9
+            int damage_amount = rand() % 9 + 10; // random int 5-9
             enemy->health = std::max(0, enemy->health - damage_amount); // Health can't go negative
             enemy_health->setPlainText(QString("Enemy Health: ") + QString::number(enemy->health));
 
@@ -218,7 +241,7 @@ void battle_scene::yes(int a)
         }
 
         // Enemy attacking player
-        int enemy_attack_damage_amount = rand() % 11 + 5; // random int 5-15
+        int enemy_attack_damage_amount = rand() % 6 + 5; // random int 5-15
         player->health = std::max(0, player->health - enemy_attack_damage_amount); // Health can't go negative
         player_health->setPlainText(QString("Player Health: ") + QString::number(player->health));
 
@@ -230,11 +253,11 @@ void battle_scene::yes(int a)
 
         emit player_hit();
     }
-    else if(a == 3) //  overnight study attack
+    else if(a == 3) //  overnight study attack, 5
     {
         // Player attacking enemy
         if (hit_probability <= 0.5){
-            int damage_amount = rand() % 11 + 10; // random int 10-20
+            int damage_amount = rand() % 20 + 1; // random int 1-19
             enemy->health = std::max(0, enemy->health - damage_amount); // Health can't go negative
             enemy_health->setPlainText(QString("Enemy Health: ") + QString::number(enemy->health));
 
@@ -256,20 +279,9 @@ void battle_scene::yes(int a)
         }
 
         // Enemy attacking player
-        int enemy_attack_damage_amount = rand() % 11 + 5; // random int 5-15
+        int enemy_attack_damage_amount = rand() % 6 + 5; // random int 5-15
         player->health = std::max(0, player->health - enemy_attack_damage_amount); // Health can't go negative
         player_health->setPlainText(QString("Player Health: ") + QString::number(player->health));
-        emit player_hit();
-
-//        // Dialog box showing the action
-//        QMessageBox msg;
-//        msg.setGeometry(100,500,250,250);
-//        msg.setText("You have been attacked!");
-//        msg.setStandardButtons(QMessageBox::Ok);
-//        msg.setEscapeButton(QMessageBox::Ok);
-//        msg.setModal(false);
-//        msg.exec();
-
 
         // Dialog box showing the action
         QMessageBox::information(
@@ -277,17 +289,34 @@ void battle_scene::yes(int a)
             tr("Dungeon and Studies"),
             tr("Player is hit!") );
 
-
+        emit player_hit();
     }
     else if(a == 4) //  run , have to add arithmethic function and battle finish function at the end
     {
-        if (hit_probability <= 0.25) // 25% chacne to win when run selected
-        {
-            enemy->health = 0; // Win battle
+        // Player attacking enemy
+        if (hit_probability <= 0.1){
+            int damage_amount = 100;
+            enemy->health = std::max(0, enemy->health - damage_amount); // Health can't go negative
             enemy_health->setPlainText(QString("Enemy Health: ") + QString::number(enemy->health));
 
+            // Dialog box showing the action
+            QMessageBox::information(
+                this,
+                tr("Dungeon and Studies"),
+                tr("Enemy died directly!") );
+
+            emit battle_ran();
+        }
+        else // If the attack is missed
+        {
+            // Dialog box showing the action
+            QMessageBox::critical(
+                this,
+                tr("Dungeon and Studies"),
+                tr("You are TRAPPED bro!") );
+
             // Enemy attacking player
-            int enemy_attack_damage_amount = rand() % 11 + 5; // random int 5-15
+            int enemy_attack_damage_amount = rand() % 6 + 5; // random int 5-15
             player->health = std::max(0, player->health - enemy_attack_damage_amount); // Health can't go negative
             player_health->setPlainText(QString("Player Health: ") + QString::number(player->health));
 
@@ -297,17 +326,37 @@ void battle_scene::yes(int a)
                 tr("Dungeon and Studies"),
                 tr("Player is hit!") );
 
-             emit player_hit();
+            emit player_hit();
+        }
 
-        }
-        else
-        {
-            battle_finish();
-        }
+//        if (hit_probability <= 0.25) // 25% chacne to win when run selected
+//        {
+//            enemy->health = 0; // Win battle
+//            enemy_health->setPlainText(QString("Enemy Health: ") + QString::number(enemy->health));
+
+//            battle_finish();
+//            emit battle_ran();
+
+//        }
+//        else
+//        {
+//            // Enemy attacking player
+//            int enemy_attack_damage_amount = rand() % 11 + 5; // random int 5-15
+//            player->health = std::max(0, player->health - enemy_attack_damage_amount); // Health can't go negative
+
+//            // Dialog box showing the action
+//            QMessageBox::information(
+//                this,
+//                tr("Dungeon and Studies"),
+//                tr("Player is hit!") );
+
+//             emit player_hit();
+//        }
     }
 
     if (player->health <= 0 or
-            enemy->health <= 0){
+            enemy->health <= 0)
+    {
         battle_finish();
     }
 }
@@ -336,7 +385,7 @@ void battle_scene::battle_finish()
         // If three levels of battle are won, go to game_over scene
         if(battle_stage == 3)
         {
-            over.show();
+            battle_stage ++;
         }
 
         emit battle_won(battle_stage);
@@ -347,6 +396,7 @@ void battle_scene::battle_finish()
     }
     else // when player successfully ran
     {
+        player->health = 100;
         emit battle_ran();
     }
 }
@@ -356,11 +406,11 @@ void battle_scene::add_new_enemy(string enemy_name)     //delete previous enemy 
     enemy = new Enemy(nullptr, enemy_name);
     enemy_health = new QGraphicsTextItem();
     enemy_health->setPlainText(QString("Enemy Health: ") + QString::number(enemy->health));
-    enemy_health->setFont(QFont("times",25));
+    enemy_health->setFont(QFont("courier",15));
 //    enemy_health->setFont(QFont("times",18));
     enemy_health->setDefaultTextColor(Qt::red);
-    enemy->setPos(800,300);
-    enemy_health->setPos(750,20);
+    enemy->setPos(800,195);
+    enemy_health->setPos(775,80);
     scene->addItem(enemy);
     scene->addItem(enemy_health);
 }

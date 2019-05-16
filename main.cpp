@@ -1,5 +1,6 @@
 #include<QApplication>
 #include "startingpage.h"
+#include "game_over.h"
 
 int game_stage = 0;
 

@@ -2,27 +2,27 @@
 #define GAME_OVER_H
 
 #include <QGraphicsScene>
-#include <QGraphicsScene>
+#include <QGraphicsView>
+
 #include "player.h"
 #include "enemy.h"
 
-class game_over : public QGraphicsView
+
+class Game_Over : public QGraphicsView
 {
     Q_OBJECT
-
 public:
-    game_over();
+    Game_Over();
 
     QGraphicsScene * scene;
-
-    int frame_number;
-    string player_name;
 
 private:
     inline void change_screen();
 
-//public slots:
-//    void skip_prologue();
+public slots:
+    void restart();
+    void exit();
+
 };
 
 #endif // GAME_OVER_H

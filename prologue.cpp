@@ -32,6 +32,12 @@ Prologue::Prologue(string player)
 
     scene->setBackgroundBrush(QBrush(QImage(":/images/images/p1.png")));
 
+    // Play background music (opening_story.mp3)
+    music_pr = new QMediaPlayer();
+    music_pr->setMedia(QUrl("qrc:/soundtracks/soundtracks/opening_story.mp3"));
+    music_pr->setVolume(10);
+    music_pr->play();
+
     // Implement the Next button
     QPushButton * next_button = new QPushButton("Next");
     next_button->move(300,500);
@@ -99,6 +105,8 @@ void Prologue::change_screen()
 
 void Prologue::skip_prologue()
 {
+    music_pr->stop();
+
     this->hide();
     game = new Game(nullptr, player_name);
 }

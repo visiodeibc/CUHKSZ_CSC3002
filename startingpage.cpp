@@ -20,10 +20,11 @@ StartingPage::StartingPage(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // Play background music
+    // Play background music (start_game.mp3)
     music_sp = new QMediaPlayer();
     music_sp->setMedia(QUrl("qrc:/soundtracks/soundtracks/start_game.mp3"));
-//    music_sp->play();
+    music_sp->setVolume(75);
+    music_sp->play();
 }
 
 StartingPage::~StartingPage()

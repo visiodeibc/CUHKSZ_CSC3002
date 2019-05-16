@@ -1,11 +1,14 @@
 #include "a_study.h"
 #include <QFont>
 #include <QKeyEvent>
+#include <QApplication>
 
 a_study::a_study()
 {
+    QFont newFont("Courier", 20, QFont::Bold, false);
+    QApplication::setFont(newFont);
+
     setPlainText("1.Study");
-    setFont(QFont("Minecraft",15));
     setDefaultTextColor(Qt::yellow);
     setFlag(QGraphicsItem::ItemIsFocusable);
 }

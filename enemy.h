@@ -16,6 +16,7 @@ public:
     //attributes
     int health;
     int attack_1;
+    int damage_amount;
     string enemy_type;
 
 private:

@@ -27,14 +27,6 @@ Player::Player(QGraphicsItem *parent, string player): QGraphicsPixmapItem(parent
     }
     health = 100;
     setFlag(QGraphicsItem::ItemIsFocusable);
-
-//    connect(this, SIGNAL(start_animation()), this, SLOT(init_animation()));
-
-//    timer = new QTimer;
-//    picCounter = 0;
-//    timerInterval = 1000;
-//    connect(timer, SIGNAL(timeout()), this, SLOT(animate()));
-//    timer->start(timerInterval);
 }
 
 void Player::start_animation()
@@ -54,7 +46,6 @@ void Player::animate()
     {
         QPixmap p0(":/images/images/main_smart1.png");
         QPixmap p1(":/images/images/main_smart.png");
-        qDebug() << "smart";
 
         if (picCounter == 0)
         {
@@ -70,7 +61,6 @@ void Player::animate()
     {
         QPixmap p0(":/images/images/main_cool1.png");
         QPixmap p1(":/images/images/main_cool.png");
-        qDebug() << "cool";
 
         if (picCounter == 0)
         {
@@ -99,8 +89,6 @@ void Player::animate()
     }
 
     picCounter++;
-//    if (picCounter == 3)
-//        picCounter = 0;
 }
 
 

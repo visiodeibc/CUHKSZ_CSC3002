@@ -1,11 +1,14 @@
 #include "d_run.h"
 #include <QFont>
 #include <QKeyEvent>
+#include <QApplication>
 
 d_run::d_run()
 {
+    QFont newFont("Courier", 20, QFont::Bold, false);
+    QApplication::setFont(newFont);
+
     setPlainText("4.Run");
-    setFont(QFont("Minecraft",15));
     setDefaultTextColor(Qt::white);
     setFlag(QGraphicsItem::ItemIsFocusable);
 }
