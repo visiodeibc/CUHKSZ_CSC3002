@@ -348,7 +348,6 @@ void battle_scene::battle_finish()
     else // when player successfully ran
     {
         emit battle_ran();
-        battle_stage--;
     }
 }
 
