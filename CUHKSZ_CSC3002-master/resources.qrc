@@ -1,0 +1,48 @@
+<RCC>
+    <qresource prefix="/soundtracks">
+        <file>soundtracks/battle.mp3</file>
+        <file>soundtracks/closing.mp3</file>
+        <file>soundtracks/dungeon.mp3</file>
+        <file>soundtracks/opening_story.mp3</file>
+        <file>soundtracks/start_game.mp3</file>
+        <file>images/enemy_calculus1.png</file>
+        <file>images/enemy_cpp1.png</file>
+        <file>images/enemy_python1.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>images/bg.png</file>
+        <file>images/cool.png</file>
+        <file>images/enemy_calculus.png</file>
+        <file>images/enemy_cpp.png</file>
+        <file>images/enemy_python.png</file>
+        <file>images/lazy.png</file>
+        <file>images/main_cool.png</file>
+        <file>images/main_lazy.png</file>
+        <file>images/startbg.png</file>
+        <file>images/battlebg.png</file>
+        <file>images/main_smart.png</file>
+        <file>images/smart.png</file>
+        <file>images/prologue1.png</file>
+        <file>images/prologue2.png</file>
+        <file>images/prologue3.png</file>
+        <file>images/main_cool.gif</file>
+        <file>images/main_cool1.png</file>
+        <file>images/main_lazy1.png</file>
+        <file>images/main_smart1.png</file>
+        <file>images/p1.png</file>
+        <file>images/p2.png</file>
+        <file>images/p3.png</file>
+        <file>images/p4.png</file>
+        <file>images/p5.png</file>
+        <file>images/p6.png</file>
+        <file>images/p7.png</file>
+        <file>images/enemy_calculus1.png</file>
+        <file>images/enemy_cpp1.png</file>
+        <file>images/enemy_python1.png</file>
+        <file>images/battlebg1.png</file>
+    </qresource>
+    <qresource prefix="/fonts">
+        <file>fonts/Minecraft.ttf</file>
+    </qresource>
+    <qresource prefix="/"/>
+</RCC>
