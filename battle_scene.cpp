@@ -16,8 +16,6 @@
 
 battle_scene::battle_scene(string player_name)
 {
-//    QFontDatabase::addApplicationFont(":/fonts/Minecraft.ttf");
-
     QFont newFont("Courier", 20, QFont::Bold, false);
     QApplication::setFont(newFont);
 
@@ -328,34 +326,9 @@ void battle_scene::yes(int a)
 
             emit player_hit();
         }
-
-//        if (hit_probability <= 0.25) // 25% chacne to win when run selected
-//        {
-//            enemy->health = 0; // Win battle
-//            enemy_health->setPlainText(QString("Enemy Health: ") + QString::number(enemy->health));
-
-//            battle_finish();
-//            emit battle_ran();
-
-//        }
-//        else
-//        {
-//            // Enemy attacking player
-//            int enemy_attack_damage_amount = rand() % 11 + 5; // random int 5-15
-//            player->health = std::max(0, player->health - enemy_attack_damage_amount); // Health can't go negative
-
-//            // Dialog box showing the action
-//            QMessageBox::information(
-//                this,
-//                tr("Dungeon and Studies"),
-//                tr("Player is hit!") );
-
-//             emit player_hit();
-//        }
     }
 
-    if (player->health <= 0 or
-            enemy->health <= 0)
+    if (player->health <= 0 or enemy->health <= 0)
     {
         battle_finish();
     }
@@ -388,6 +361,11 @@ void battle_scene::battle_finish()
             battle_stage ++;
         }
 
+        QMessageBox::information(
+                    this,
+                    tr("Dungeon and Studies"),
+                    tr("You won the round!"));
+
         emit battle_won(battle_stage);
     }
     else if(player->health <= 0) // when player lost
@@ -406,8 +384,6 @@ void battle_scene::add_new_enemy(string enemy_name)     //delete previous enemy 
     enemy = new Enemy(nullptr, enemy_name);
     enemy_health = new QGraphicsTextItem();
     enemy_health->setPlainText(QString("Enemy Health: ") + QString::number(enemy->health));
-    enemy_health->setFont(QFont("courier",15));
-//    enemy_health->setFont(QFont("times",18));
     enemy_health->setDefaultTextColor(Qt::red);
     enemy->setPos(800,195);
     enemy_health->setPos(775,80);

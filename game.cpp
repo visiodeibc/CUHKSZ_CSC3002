@@ -114,10 +114,19 @@ void Game::battle_won(int battle_stage)
 
     if(battle_stage == 2)
     {
+        battle->hide();
+        music_battle->stop();
 
+        navigation_window->show();
+        music_dungeon->play();
     }
     else if(battle_stage == 3)
     {
+        battle->hide();
+        music_battle->stop();
+
+        navigation_window->show();
+        music_dungeon->play();
     }
 
     // If all the battle stages are won, hide all windows except game_over.
